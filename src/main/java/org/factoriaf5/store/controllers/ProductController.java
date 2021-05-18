@@ -2,6 +2,7 @@ package org.factoriaf5.store.controllers;
 
 import org.factoriaf5.store.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -13,17 +14,17 @@ public class ProductController {
     public String check() {
         return "Hello! I'm a server";
     }
-
-    public List<Product> products = new ArrayList<>();
+    private List<Product> products;
+    public ProductController() {
+         products = new ArrayList<>();}
 
     @GetMapping("/products")
     public List<Product> allProducts() {
-        return products;
+        return products;}
+
+        @PostMapping("/products")
+        public void addProduct (Product product){
+            products.add(product);
+        }
+
     }
-}
-
-    /*@PostMapping("/products")
-    public RedirectView addNewProduct(Product product) {
-        products.add(product);
-        return new RedirectView("/"); */
-
